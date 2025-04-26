@@ -1,0 +1,86 @@
+/* src/index.css - V3 (Set Default Light Theme Colors) - VERIFIED */
+body {
+  margin: 0;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color, #f8f9fa);
+  color: var(--text-color, #333);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* --- Theme Variables --- */
+
+/* Default Light Theme Variables */
+:root, html[data-theme='light'] {
+  /* Using Elegant Romance as default */
+  --primary-color: #9C27B0;
+  --secondary-color: #E1BEE7;
+  --accent-color: #7B1FA2;
+  --background-color: #FCF5FF;
+  --text-color: #212529;
+  --light-text: #6c757d;
+  --card-bg: #ffffff;
+  --border-color: rgba(0, 0, 0, 0.125);
+  --input-bg: #ffffff;
+  --input-border: #ced4da;
+  --table-row-stripe-bg: rgba(0, 0, 0, 0.02);
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  --info-color: #3b82f6;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --border-radius: 0.5rem;
+  --transition: all 0.2s ease-in-out;
+}
+
+/* Dark Theme Variable Overrides */
+html[data-theme='dark'] {
+  --background-color: #121212;
+  --text-color: #e1e3e6;
+  --light-text: #a8b3cf;
+  --card-bg: #1e1e1e;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --input-bg: #2a2a2a;
+  --input-border: #444;
+  --table-row-stripe-bg: rgba(255, 255, 255, 0.04);
+  --primary-color: #bb86fc;
+  --secondary-color: #bb86fc;
+  --accent-color: #03dac6;
+  --success-color: #4caf50;
+  --warning-color: #ffc107;
+  --error-color: #f44336;
+  --info-color: #2196f3;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 6px 12px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Global Transitions */
+body, .navbar, .card-bg, .action-button, .guest-row, input, select, textarea, button,
+.dashboard-card, .status-card-item, .reminder-guest-card
+{
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Dark mode input/select overrides */
+html[data-theme='dark'] input,
+html[data-theme='dark'] select,
+html[data-theme='dark'] textarea {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-color);
+}
+html[data-theme='dark'] select {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%20fill='%23a8b3cf'%3E%3Cpath%20fill-rule='evenodd'%20d='M7.21%2010.77a.75.75%200%200%201%20.039-.039l3.5-3.5a.75.75%200%200%200-1.06-1.06L8%208.94%205.79%206.73a.75.75%200%200%200-1.06%201.06l3.5%203.5a.75.75%200%200%200%201.019-.039Z'%20clip-rule='evenodd'/%3E%3C/svg%3E");
+}

@@ -1,0 +1,10 @@
+/* src/App.css */
+.App {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f9f6ff;
+  margin: 0;
+  padding: 0;
+}
