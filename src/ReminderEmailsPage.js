@@ -191,15 +191,15 @@ function ReminderEmailsPage({ guests, isWeddingDateSet, rsvpDeadlineDays, setRsv
             const hasError = emailContent === "Error";
 
             return (
-            <div key={guest.id} className={`reminder-guest-card ${hasError ? 'has-error' : ''}`}>
+            <div key={guest.id} className={`reminder-guest-card ${hasError ? 'has-error' : ''}`} style={{ width: '100%', maxWidth: '100%', boxSizing: 'border-box', overflow: 'hidden' }}>
                 <div className="card-header">
                   <User size={20} />
                   <h3>{guest.name}</h3>
                   <span>({guest.email})</span>
                 </div>
 
-                <div className="card-body">
-                  <div className="additional-facts">
+                <div className="card-body" style={{ width: '100%', maxWidth: '100%', boxSizing: 'border-box', overflow: 'hidden' }}>
+                  <div className="additional-facts" style={{ width: '100%', maxWidth: '100%', boxSizing: 'border-box' }}>
                       <label htmlFor={`facts-${guest.id}`}>Optional personal notes/facts:</label>
                       <textarea
                       id={`facts-${guest.id}`}
@@ -208,20 +208,23 @@ function ReminderEmailsPage({ guests, isWeddingDateSet, rsvpDeadlineDays, setRsv
                       placeholder={`e.g., "Can't wait to catch up!"`}
                       rows={2}
                       disabled={isLoadingThisCard} // Disable based on card-specific loading
+                      style={{ width: '100%', maxWidth: '100%', boxSizing: 'border-box' }}
                       />
                   </div>
 
-                  <div className="generated-email-section">
+                  <div className="generated-email-section" style={{ width: '100%', maxWidth: '100%', boxSizing: 'border-box', overflow: 'hidden' }}>
                       {/* Show Generate button if no content and not loading */}
                       {!emailContent && !isLoadingThisCard && (
-                        <button
-                            onClick={() => handleGenerate(guest)} // Generate for single guest
-                            disabled={!isWeddingDateSet} // Disable if wedding date isn't set
-                            className="action-button secondary-button generate-single-button"
-                            title={!isWeddingDateSet ? "Set Wedding Date first" : ""}
-                        >
-                          <Mail size={14}/> Generate Reminder
-                        </button>
+                        <div className="generate-button-container">
+                          <button
+                              onClick={() => handleGenerate(guest)} // Generate for single guest
+                              disabled={!isWeddingDateSet} // Disable if wedding date isn't set
+                              className="action-button secondary-button generate-single-button"
+                              title={!isWeddingDateSet ? "Set Wedding Date first" : ""}
+                          >
+                            <Mail size={14}/> Generate Reminder
+                          </button>
+                        </div>
                       )}
 
                       {/* Show Loading indicator if loading this specific card */}
@@ -244,6 +247,14 @@ function ReminderEmailsPage({ guests, isWeddingDateSet, rsvpDeadlineDays, setRsv
                               readOnly
                               rows={8}
                               className="generated-email-display"
+                              style={{
+                                width: '100%',
+                                maxWidth: '100%',
+                                boxSizing: 'border-box',
+                                overflowWrap: 'break-word',
+                                whiteSpace: 'pre-wrap',
+                                overflow: 'auto'
+                              }}
                           />
                           <a
                             href={createMailtoLink(guest, emailContent)}

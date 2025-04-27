@@ -171,7 +171,6 @@ function GuestListPage({
     else if (e.key === 'Escape') cancelEditing();
   };
 
-  const getGuestNameById = (id) => guests.find(g => g.id === id)?.name || 'Unknown';
   const downloadTemplateCSV = () => generateTemplateCSV();
   const downloadTemplatePDF = () => generateTemplatePDF();
   const toggleRsvpStatus = (id, currentStatus) => {
@@ -293,7 +292,6 @@ function GuestListPage({
   // --- JSX Return (Ensure full structure) ---
   return (
     <div className="page-container guest-list-page-container">
-      <FloatingRings />
       <div className="app-header">
         <h1 className="app-title">Aisle Be There</h1>
         <h2 className="app-subtitle">Your Personal Wedding Planning Assistant</h2>
@@ -344,7 +342,7 @@ function GuestListPage({
           {/* Invites Sent Card */}
           <div className="invites-sent-card status-card-item">
                <h3 className="invites-title">Invitations & RSVP</h3>
-               <div className="invites-content"> <div className="invites-number"> {metrics.invitesSent} <span className="invites-label">of {metrics.definitelyInviting} invites sent</span> </div> <div className="invites-progress-container"> <div className="invites-progress-bar" style={{ width: `${metrics.definitelyInviting > 0 ? (metrics.invitesSent / metrics.definitelyInviting) * 100 : 0}%` }}></div> </div> <div className="rsvp-stats"> <div className="rsvp-stat"><div className="rsvp-icon-indicator rsvp-confirmed"></div><span className="rsvp-count">{metrics.rsvpsConfirmed}</span> confirmed</div> <div className="rsvp-stat"><div className="rsvp-icon-indicator rsvp-declined"></div><span className="rsvp-count">{metrics.rsvpsDeclined}</span> declined</div> <div className="rsvp-stat"><div className="rsvp-icon-indicator rsvp-pending"></div><span className="rsvp-count">{metrics.rsvpsPending}</span> pending</div> </div> {metrics.definitelyInviting > 0 && metrics.invitesSent < metrics.definitelyInviting && ( <div className="invites-remaining">{metrics.definitelyInviting - metrics.invitesSent} invitations left to send</div> )} </div>
+               <div className="invites-content"> <div className="invites-number"> {metrics.invitesSent} <span className="invites-label">of {metrics.definitelyInviting} invites sent</span> </div> <div className="invites-progress-container"> <div className="invites-progress-bar" style={{ width: `${metrics.definitelyInviting > 0 ? (metrics.invitesSent / metrics.definitelyInviting) * 100 : 0}%` }}></div> </div> <div className="rsvp-stats"> <div className="rsvp-stat"><div className="rsvp-icon-indicator rsvp-confirmed"></div><span className="rsvp-count">{metrics.rsvpsConfirmed}</span> confirmed</div> <div className="rsvp-stat"><div className="rsvp-icon-indicator rsvp-declined"></div><span className="rsvp-count">{metrics.rsvpsDeclined}</span> declined</div> <div className="rsvp-stat"><div className="rsvp-icon-indicator rsvp-pending"></div><span className="rsvp-count">{metrics.rsvpsPending}</span> pending</div> </div> {metrics.definitelyInviting > 0 && metrics.invitesSent < metrics.definitelyInviting && ( <div className="invites-remaining">{metrics.definitelyInviting - metrics.invitesSent} invitations left to send</div> )} {metrics.rsvpsPending > 0 && ( <Link to="/reminders" className="action-button secondary-button send-reminder-link"> <Mail size={16} /> Send RSVP Reminders </Link> )} </div>
            </div>
       </section>
 
@@ -466,47 +464,5 @@ function GuestListPage({
     </div> // End page container
   ); // End component return
 } // End of GuestListPage Component
-
-
-// *** Render functions defined INSIDE the component now have access to its scope ***
-
-const FloatingRings = () => {
-  const rings = Array.from({ length: 6 }).map((_, index) => ({
-    id: index,
-    animationDuration: `${35 + Math.random() * 15}s`,
-    animationDelay: `${index * 5}s`,
-    size: `${30 + Math.random() * 20}px`,
-    direction: Math.random() > 0.5 ? 'normal' : 'reverse'
-  }));
-
-  return (
-    <div className="floating-rings-container">
-      {rings.map(ring => (
-        <div
-          key={ring.id}
-          className="floating-ring"
-          style={{
-            animationDuration: ring.animationDuration,
-            animationDelay: ring.animationDelay,
-            width: ring.size,
-            height: ring.size,
-            animationDirection: ring.direction,
-            animationFillMode: 'both'
-          }}
-        >
-          <div className="ring-band">
-            <div className="ring-setting"></div>
-            <div 
-              className="ring-diamond"
-              style={{
-                animation: `sparkle 1s infinite alternate ${ring.animationDelay}`
-              }}
-            ></div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
 
 export default GuestListPage;

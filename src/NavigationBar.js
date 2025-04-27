@@ -1,14 +1,12 @@
-// src/NavigationBar.js - V4 (Removed Theme Selector) - Verified
-import React from 'react'; // Removed useState
+// src/NavigationBar.js - V7 (Dashboard Link is Text)
+import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-// REMOVED Palette icon import
-import { Sun, Moon } from 'lucide-react'; // Keep Sun/Moon
+// --- REMOVE LayoutDashboard import ---
+import { Sun, Moon, Home, Users, Mail, DollarSign, Briefcase, Clock, MessagesSquare } from 'lucide-react';
 import './WeddingPlannerApp.css';
 
-// Only needs dark mode props now
 function NavigationBar({ isDarkMode, setIsDarkMode }) {
 
-  // Toggle dark mode state (passed up to App.js)
   const toggleDarkMode = () => {
     setIsDarkMode(prevMode => !prevMode);
   };
@@ -21,21 +19,56 @@ function NavigationBar({ isDarkMode, setIsDarkMode }) {
         </div>
 
         <div className="navbar-links">
-           <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} end>Guest List</NavLink>
-           <NavLink to="/reminders" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Reminder Emails</NavLink>
+           <NavLink
+             to="/"
+             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+             end
+           >
+             <Home size={18} /> Dashboard
+           </NavLink>
+           <NavLink 
+             to="/guest-list" 
+             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+           >
+             <Users size={18} /> Guest List
+           </NavLink>
+           <NavLink 
+             to="/budget" 
+             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+           >
+             <DollarSign size={18} /> Budget
+           </NavLink>
+           <NavLink 
+             to="/vendor-hub" 
+             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+           >
+             <Briefcase size={18} /> Vendor Hub
+           </NavLink>
+           <NavLink to="/timeline" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+             <Clock size={18} /> Timeline
+           </NavLink>
+           <NavLink 
+             to="/reminders" 
+             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+           >
+             <Mail size={18} /> Reminders
+           </NavLink>
+           <NavLink 
+             to="/chatbot" 
+             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+           >
+             <MessagesSquare size={18} /> Wedding Assistant
+           </NavLink>
         </div>
 
-        {/* Container for just the dark mode toggle */}
         <div className="navbar-actions">
             <button
                 className="dark-mode-toggle"
                 onClick={toggleDarkMode}
                 title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
-                {/* Show Moon icon for Light mode, Sun icon for Dark mode */}
                 {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
-            {/* Theme selector completely removed */}
         </div>
       </div>
     </nav>

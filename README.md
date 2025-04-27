@@ -68,3 +68,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Setting up the Wedding Assistant Chatbot
+
+The Wedding Assistant feature requires an OpenAI API key to function. Follow these steps to set it up:
+
+1. Create a `.env` file in the root directory of the project
+2. Add your OpenAI API key to the file in the following format:
+   ```
+   REACT_APP_OPENAI_API_KEY=your_openai_api_key_here
+   ```
+3. Replace `your_openai_api_key_here` with your actual OpenAI API key
+4. Restart the development server for the changes to take effect
+
+Your Wedding Assistant chatbot will now use the API key from the .env file.

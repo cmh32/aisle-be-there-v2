@@ -373,32 +373,147 @@ margin: 0;
       ========================================================================== */
    .reminder-controls { text-align: center; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); }
    .no-reminders-message { margin-top: 1rem; color: var(--light-text); font-style: italic; }
-   .reminder-guest-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
-   .reminder-guest-card { background-color: var(--card-bg); border-radius: var(--border-radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); display: flex; flex-direction: column; transition: var(--transition); overflow: hidden; }
-   .reminder-guest-card:hover { box-shadow: var(--shadow-md); border-color: var(--secondary-color); }
-   .reminder-guest-card.has-error { border-color: var(--error-color); background-color: #fff5f5; }
-   html[data-theme='dark'] .reminder-guest-card.has-error { background-color: #5c1a1a; }
-   .reminder-guest-card .card-header { display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-color); background-color: color-mix(in srgb, var(--secondary-color) 30%, white 70%); color: var(--primary-color); }
-   html[data-theme='dark'] .reminder-guest-card .card-header { background-color: color-mix(in srgb, var(--secondary-color) 30%, var(--card-bg) 70%); color: var(--text-color); }
-   .reminder-guest-card .card-header h3 { margin: 0; font-size: 1rem; font-weight: 600; }
-   .reminder-guest-card .card-header span { font-size: 0.8rem; color: var(--light-text); flex-grow: 1; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-   .reminder-guest-card .card-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; flex-grow: 1; }
-   .additional-facts label, .generated-email-section label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--primary-color); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.5px; }
-   .additional-facts textarea { width: 100%; padding: 0.5rem 0.75rem; border: 1px solid var(--input-border); border-radius: var(--border-radius); font-size: 0.85rem; font-family: inherit; box-sizing: border-box; resize: vertical; transition: var(--transition); background-color: var(--input-bg); color: var(--text-color); }
-   .additional-facts textarea:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 2px var(--secondary-color); }
-   .generated-email-section { margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.75rem; flex-grow: 1; }
-   .generated-email-display { width: 100%; min-height: 120px; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-size: 0.85rem; font-family: inherit; box-sizing: border-box; background-color: #f8f9fa; resize: vertical; }
-   html[data-theme='dark'] .generated-email-display { background-color: var(--input-bg); border-color: var(--input-border); color: var(--text-color);}
-   .generated-email-display:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 2px var(--secondary-color); background-color: white; }
-   html[data-theme='dark'] .generated-email-display:focus { background-color: var(--card-bg);}
+   .reminder-guest-list { 
+     display: grid; 
+     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+     gap: 1.5rem;
+     width: 100%;
+   }
+   .reminder-guest-card { 
+     background-color: var(--card-bg);
+     border-radius: var(--border-radius);
+     box-shadow: var(--shadow-sm);
+     border: 1px solid var(--border-color);
+     display: flex;
+     flex-direction: column;
+     transition: var(--transition);
+     width: 100%;
+   }
+   .reminder-guest-card:hover { 
+     box-shadow: var(--shadow-md); 
+     border-color: var(--secondary-color);
+   }
+   .reminder-guest-card.has-error { 
+     border-color: var(--error-color); 
+     background-color: #fff5f5;
+   }
+   html[data-theme='dark'] .reminder-guest-card.has-error { 
+     background-color: #5c1a1a;
+   }
+   .reminder-guest-card .card-header { 
+     display: flex; 
+     align-items: center; 
+     gap: 0.75rem; 
+     padding: 1rem; 
+     border-bottom: 1px solid var(--border-color); 
+     background-color: color-mix(in srgb, var(--secondary-color) 30%, white 70%);
+   }
+   html[data-theme='dark'] .reminder-guest-card .card-header { 
+     background-color: color-mix(in srgb, var(--secondary-color) 30%, var(--card-bg) 70%); 
+     color: var(--text-color);
+   }
+   .reminder-guest-card .card-header h3 { 
+     margin: 0; 
+     font-size: 1rem; 
+     font-weight: 600;
+   }
+   .reminder-guest-card .card-header span { 
+     font-size: 0.8rem; 
+     color: var(--light-text); 
+     flex-grow: 1; 
+     text-align: right; 
+     white-space: nowrap; 
+     overflow: hidden; 
+     text-overflow: ellipsis;
+   }
+   .reminder-guest-card .card-body { 
+     padding: 1rem; 
+     display: flex; 
+     flex-direction: column; 
+     gap: 1rem;
+     width: 100% !important;
+     max-width: 100% !important;
+     box-sizing: border-box !important;
+     overflow: hidden !important;
+   }
+   .additional-facts label, 
+   .generated-email-section label { 
+     display: block; 
+     font-size: 0.75rem; 
+     font-weight: 600; 
+     color: var(--primary-color); 
+     margin-bottom: 0.3rem; 
+     text-transform: uppercase; 
+     letter-spacing: 0.5px;
+   }
+   .additional-facts textarea { 
+     width: 100%; 
+     padding: 0.5rem 0.75rem; 
+     border: 1px solid var(--input-border); 
+     border-radius: var(--border-radius); 
+     font-size: 0.85rem; 
+     font-family: inherit; 
+     box-sizing: border-box; 
+     resize: vertical; 
+     min-height: 60px;
+     background-color: var(--input-bg); 
+     color: var(--text-color);
+   }
+   .additional-facts textarea:focus { 
+     outline: none; 
+     border-color: var(--primary-color); 
+     box-shadow: 0 0 0 2px var(--secondary-color);
+   }
+   .generated-email-section { 
+     display: flex; 
+     flex-direction: column; 
+     gap: 0.75rem;
+   }
+   .generated-email-display { 
+     width: 100% !important; 
+     min-height: 120px; 
+     padding: 0.75rem; 
+     border: 1px solid var(--border-color); 
+     border-radius: var(--border-radius); 
+     font-size: 0.85rem; 
+     font-family: inherit; 
+     box-sizing: border-box !important; 
+     background-color: #f8f9fa; 
+     overflow-wrap: break-word !important;
+     white-space: pre-wrap !important;
+     overflow: auto !important;
+     max-width: 100% !important;
+     word-break: break-word !important;
+   }
+   html[data-theme='dark'] .generated-email-display { 
+     background-color: var(--input-bg); 
+     border-color: var(--input-border); 
+     color: var(--text-color);
+   }
+   .generated-email-display:focus { 
+     outline: none; 
+     border-color: var(--primary-color); 
+     box-shadow: 0 0 0 2px var(--secondary-color); 
+     background-color: white;
+   }
+   html[data-theme='dark'] .generated-email-display:focus { 
+     background-color: var(--card-bg);
+   }
+   .generate-single-button {
+     align-self: center;
+     margin: 1rem 0;
+   }
+   .send-email-button {
+     width: 100%;
+     justify-content: center;
+     margin-top: 0.5rem;
+   }
    .loading-indicator { display: flex; align-items: center; justify-content: center; gap: 0.5rem; color: var(--light-text); font-size: 0.9rem; padding: 1rem 0; }
    .spinner { animation: spin 1s linear infinite; }
    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
    .reminder-error-banner { background-color: #fee2e2; color: var(--error-color); padding: 1rem; border-radius: var(--border-radius); margin: 0 0 1.5rem 0; text-align: center; font-weight: 500; }
    html[data-theme='dark'] .reminder-error-banner { background-color: #5c1a1a; color: #fca5a5;}
    .reminder-error-text { color: var(--error-color); font-size: 0.85rem; font-weight: 500; text-align: center; padding: 0.5rem; }
-   .generate-single-button { width: 100%; }
-   .send-email-button { text-decoration: none; text-align: center; display: flex; justify-content: center; }
    
    /* ==========================================================================
       Footer Styles
@@ -456,26 +571,24 @@ margin: 0;
    }
 
 .floating-rings-container {
-  position: fixed;
+  position: fixed; /* Fixed positioning stays relative to the viewport */
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
+  width: 100vw; /* Cover full viewport width */
+  height: 100vh; /* Cover full viewport height */
+  overflow: hidden; /* Prevent rings from causing scrollbars */
+  pointer-events: none; /* IMPORTANT: Allow clicks to go through to elements underneath */
+  z-index: -1; /* Place it behind all normally positioned content */
 }
 
 .floating-ring {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  opacity: 0.6;
-  animation: floatAround 20s infinite linear;
-  will-change: transform;
+  position: absolute; /* Positioned relative to the container */
+  opacity: 0.1; /* Start with low opacity - Increase this (e.g., to 0.5 or 1.0) temporarily if you STILL can't see them */
+  /* Ensure the ring itself has visible content */
+  display: block; /* Make sure it's displayed */
 }
 
-/* Wedding band style */
+/* Ring Structure Styling (Ensure these make the ring visible) */
 .ring-band {
   position: absolute;
   width: 100%;
@@ -554,5 +667,2036 @@ margin: 0;
   .title-ring .ring-diamond {
     width: 20px;
     height: 20px;
+  }
+}
+
+/* ==========================================================================
+   src/WeddingPlannerApp.css - ADD THESE STYLES for DashboardPage
+   ========================================================================== */
+
+/* --- Dashboard Page Container --- */
+.dashboard-page-container {
+  /* Add specific padding or layout if needed, otherwise inherits from page-container */
+}
+
+/* --- Dashboard Header --- */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 1rem; /* Add gap for wrapping */
+}
+
+.logo-container {
+  flex-shrink: 0; /* Prevent logo from shrinking */
+}
+
+.app-logo-dashboard {
+  font-family: 'Playfair Display', serif; /* Match navbar logo */
+  font-size: 2rem; /* Slightly larger for emphasis */
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+  line-height: 1;
+}
+
+.app-logo-image { /* Style if using an image logo */
+  height: 50px; /* Adjust as needed */
+  width: auto;
+}
+
+.couple-photo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.couple-photo-placeholder {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: var(--card-bg);
+  border: 1px dashed var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  margin-left: auto;
+}
+
+.couple-photo-placeholder:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+  background-color: var(--secondary-color);
+}
+
+html[data-theme='dark'] .couple-photo-placeholder {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+html[data-theme='dark'] .couple-photo-placeholder:hover {
+  background-color: color-mix(in srgb, var(--card-bg) 80%, white 20%);
+  border-color: var(--primary-color);
+}
+
+.photo-placeholder-icon {
+  color: var(--primary-color);
+  opacity: 0.8;
+  transition: var(--transition);
+  z-index: 1;
+}
+
+html[data-theme='dark'] .photo-placeholder-icon {
+  color: var(--light-text);
+}
+
+.photo-placeholder-text {
+  font-size: 0.7rem;
+  margin-top: 0.3rem;
+  color: var(--light-text);
+  font-weight: 500;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  z-index: 1;
+}
+
+.upload-icon {
+  color: var(--primary-color);
+}
+
+.couple-photo-placeholder:hover .photo-placeholder-text {
+  color: var(--primary-color);
+}
+
+.couple-photo-placeholder:hover .photo-placeholder-icon {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.couple-photo-image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.remove-photo-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  color: var(--error-color);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.couple-photo-placeholder:hover .remove-photo-button {
+  opacity: 1;
+}
+
+html[data-theme='dark'] .remove-photo-button {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ff6b6b;
+}
+
+.couple-names { /* Optional styling for names */
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-color);
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* --- Countdown Section (Uses Status Card Styles) --- */
+.countdown-section {
+  /* Inherits styles from .status-card-item */
+  margin-bottom: 2.5rem; /* Space before the planning grid */
+  /* Make sure the countdown text is centered if needed */
+  /* .wedding-date-content might need align-items: center; */
+}
+
+/* --- Planning Steps Grid --- */
+.planning-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    /* Ensure rows can grow, and items within them stretch by default */
+    /* align-items: stretch; /* This is usually the default, but good to be explicit if needed */
+}
+
+/* Base card style - Apply height 100% here */
+.status-card-item.planning-step-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    display: flex; /* Keep flex */
+    flex-direction: column; /* Keep column direction */
+    align-items: flex-start;
+    text-align: left;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+    height: 100%; /* Force card to fill grid cell height */
+    box-sizing: border-box; /* Include padding/border in height calculation */
+    transition: var(--transition);
+}
+
+/* Link wrapper adjustments */
+.status-card-item-link {
+    text-decoration: none;
+    color: inherit;
+    display: block; /* Keep as block */
+    height: 100%; /* Make link fill entire grid cell */
+}
+
+/* Ensure card takes full height even inside link */
+.status-card-item-link .status-card-item.planning-step-card {
+    height: 100%; /* Redundant but safe */
+}
+
+.status-card-item-link:hover .status-card-item {
+    box-shadow: var(--shadow-md);
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Icon Wrapper */
+.card-icon-wrapper {
+    width: 48px; /* Circle size */
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba(147, 51, 234, 0.1); /* Light purple background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem; /* Space below icon */
+    flex-shrink: 0; /* Prevent shrinking */
+    color: var(--primary-color); /* Icon color */
+}
+
+html[data-theme='dark'] .card-icon-wrapper {
+    background-color: rgba(147, 51, 234, 0.2);
+}
+
+/* Ensure icon inside fits well */
+.card-icon-wrapper svg {
+    width: 24px; /* Adjust icon size within circle */
+    height: 24px;
+}
+
+/* Card Body - Ensure it grows */
+.card-body {
+    flex-grow: 1; /* Makes this section take up the available vertical space */
+    width: 100%; /* Ensure it takes full width */
+    display: flex; /* Use flex for vertical alignment */
+    flex-direction: column; /* Stack title and subtext */
+    justify-content: flex-start; /* Align title/subtext to top */
+}
+
+
+/* Card Title */
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+/* Card Subtext/Value */
+.card-subtext {
+    font-size: 0.9rem;
+    color: var(--light-text);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Style specific values differently if needed (e.g., budget) */
+.card-subtext a { /* If subtext contains links */
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+
+/* Arrow Icon - Position relative to card bottom */
+.card-arrow {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    color: var(--primary-color);
+    opacity: 0.7;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Arrow hover effect */
+.status-card-item-link:hover .card-arrow {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+
+/* --- Root Variable Definitions (Ensure --primary-color-light exists) --- */
+:root {
+    /* ... other variables ... */
+    --primary-color: #8A2BE2;
+    --primary-color-light: rgba(138, 43, 226, 0.1); /* Example: Light violet background for icon */
+    /* ... */
+}
+
+[data-theme="dark"] {
+     /* ... other dark mode variables ... */
+     --primary-color-light: rgba(138, 43, 226, 0.2); /* Slightly less transparent for dark */
+     /* ... */
+}
+
+/* REMOVE OLD/CONFLICTING STYLES if any */
+/* Search for old .status-card-item styles (e.g., display: grid, specific column templates) */
+/* Search for old .card-icon styles (without the wrapper) and remove/update */
+
+
+/* ==========================================================================
+ End of DashboardPage Styles
+ ========================================================================== */
+
+ /* ==========================================================================
+   src/WeddingPlannerApp.css - ADD THESE STYLES for LoginPage
+   ========================================================================== */
+
+/* --- Login Page Container --- */
+.login-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Full viewport height */
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--secondary-color) 0%, color-mix(in srgb, var(--primary-color) 20%, var(--background-color)) 100%);
+  /* Apply dark mode gradient */
+}
+html[data-theme='dark'] .login-page-container {
+   background: linear-gradient(135deg, #222 0%, #121212 100%);
+}
+
+
+/* --- Login Box --- */
+.login-box {
+  background-color: var(--card-bg);
+  padding: 2.5rem 3rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* Spacing between elements in the box */
+}
+
+.login-welcome {
+  font-size: 1.2rem;
+  color: var(--light-text);
+  font-weight: 400;
+  margin: 0 0 -0.75rem 0; /* Pull logo closer */
+}
+
+.app-logo-login {
+  font-family: 'Playfair Display', serif; /* Match other logos */
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.login-subtitle {
+  font-size: 1rem;
+  color: var(--light-text);
+  margin: -0.5rem 0 1rem 0; /* Adjust spacing */
+}
+
+/* --- Login/Signup Buttons --- */
+.login-button, .signup-button {
+  width: 100%; /* Make buttons full width of box */
+  padding: 0.75rem 1rem; /* Slightly larger buttons */
+  font-size: 1rem;
+  justify-content: center; /* Center icon and text */
+}
+
+.signup-button {
+  /* Optionally style signup differently */
+  /* background-color: transparent; */
+  /* border: 1px solid var(--primary-color); */
+  /* color: var(--primary-color); */
+}
+/* html[data-theme='dark'] .signup-button { */
+  /* border-color: var(--secondary-color); */
+  /* color: var(--secondary-color); */
+/* } */
+
+.login-note {
+  font-size: 0.8rem;
+  color: var(--light-text);
+  margin-top: 0.5rem;
+}
+
+
+/* ==========================================================================
+ End of LoginPage Styles
+ ========================================================================== */
+
+ /* ==========================================================================
+   src/WeddingPlannerApp.css - ADD THESE STYLES for BudgetPage
+   ========================================================================== */
+
+/* --- Budget Page Container --- */
+.budget-page-container {
+  /* Add specific padding if needed */
+}
+
+/* --- Section Titles --- */
+.budget-section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+/* --- Budget Summary Section --- */
+.budget-summary-section {
+  /* Inherits from .status-card-item for basic box look */
+  margin-bottom: 2rem;
+  padding: 1.5rem 2rem; /* Adjust padding */
+}
+
+.budget-allotted-area {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+.budget-allotted-area label {
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.budget-input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.budget-input-large {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  border: none;
+  border-bottom: 2px dashed var(--secondary-color);
+  background: transparent;
+  padding: 0.25rem 0.5rem;
+  text-align: left;
+  width: 150px; /* Adjust width as needed */
+}
+.budget-input-large:focus {
+  outline: none;
+  border-bottom-style: solid;
+  border-bottom-color: var(--primary-color);
+}
+/* Hide spinner buttons for number input */
+.budget-input-large::-webkit-outer-spin-button,
+.budget-input-large::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.budget-input-large[type=number] { -moz-appearance: textfield; }
+
+.budget-set-button, .budget-cancel-button {
+  padding: 0.4rem 0.8rem; /* Smaller buttons */
+}
+
+.budget-display-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.budget-allotted-display {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.edit-budget-button {
+  background: none;
+  border: none;
+  color: var(--info-color);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.edit-budget-button:hover {
+  background-color: var(--secondary-color);
+}
+html[data-theme='dark'] .edit-budget-button:hover {
+   background-color: #444;
+}
+
+
+.budget-summary-figures {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
+}
+.figure-item {
+  text-align: center;
+}
+.figure-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--light-text);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.figure-value {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.figure-item.spent .figure-value {
+  color: var(--warning-color); /* Orange for spent */
+}
+.figure-item.remaining.positive .figure-value {
+  color: var(--success-color); /* Green for positive remaining */
+}
+.figure-item.remaining.negative .figure-value {
+  color: var(--error-color); /* Red for negative remaining */
+}
+
+.budget-progress-container {
+  width: 100%;
+  background-color: #e9ecef;
+  border-radius: 9999px;
+  height: 10px; /* Slightly thicker bar */
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+html[data-theme='dark'] .budget-progress-container { background-color: #495057; }
+
+.budget-progress-bar {
+  height: 100%;
+  background-color: var(--warning-color); /* Use spent color */
+  transition: width 0.5s ease;
+  border-radius: 9999px;
+}
+.budget-progress-bar.over-budget {
+  background-color: var(--error-color);
+}
+
+.over-budget-warning {
+  color: var(--error-color);
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+}
+
+
+/* --- Add Expense Section --- */
+.add-expense-section {
+  margin-bottom: 2rem;
+}
+
+.add-expense-form {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+.add-expense-form .form-row {
+  display: flex;
+  align-items: flex-end; /* Align items to bottom for button */
+  gap: 1rem;
+  flex-wrap: wrap; /* Allow wrapping */
+}
+
+.add-expense-form .form-group {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allow stretching */
+}
+.add-expense-form .form-group label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--light-text);
+  margin-bottom: 0.25rem;
+}
+.add-expense-form .form-group input,
+.add-expense-form .form-group select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--input-border);
+  border-radius: calc(var(--border-radius) / 1.5);
+  font-size: 0.9rem;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  box-sizing: border-box; /* Include padding in width */
+}
+.add-expense-form .form-group input:focus,
+.add-expense-form .form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 30%, transparent 70%);
+}
+
+/* Specific widths for form groups */
+.add-expense-form .form-group.category { min-width: 150px; flex-basis: 150px; }
+.add-expense-form .form-group.item { min-width: 200px; flex-basis: 200px; flex-grow: 2; } /* Allow item to grow more */
+.add-expense-form .form-group.cost { min-width: 120px; flex-basis: 120px; }
+.add-expense-form .form-group.action { flex-grow: 0; } /* Don't let button group grow */
+
+
+.add-expense-button {
+  padding: 0.55rem 1rem; /* Match input height */
+}
+
+/* --- Expense List Section --- */
+.expense-list-section {
+  /* Styling for the section */
+}
+
+.expense-table-container {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden; /* For rounded corners */
+  box-shadow: var(--shadow-sm);
+  background-color: var(--card-bg);
+  overflow-x: auto; /* Allow horizontal scroll on small screens */
+}
+
+.expense-table {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.expense-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 0.8fr;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+.expense-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 0.8fr;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--background-color);
+}
+
+.expense-row:nth-child(even) {
+  background-color: var(--secondary-background);
+}
+
+.cell {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--input-background);
+  color: var(--text-color);
+}
+
+.action-button {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+.action-button:hover {
+  background-color: var(--hover-color);
+}
+
+.edit-button {
+  color: var(--primary-color);
+}
+
+.delete-button {
+  color: var(--error-color);
+}
+
+.primary-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.secondary-button {
+  background-color: var(--border-color);
+  color: var(--text-color);
+}
+
+.no-expenses-message {
+  text-align: center;
+  padding: 2rem;
+  color: var(--light-text);
+  font-style: italic;
+}
+
+/* Add these styles for the expense table */
+.expense-table {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.expense-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 0.8fr;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    font-weight: bold;
+}
+
+.expense-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 0.8fr;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--background-color);
+}
+
+.expense-row:nth-child(even) {
+    background-color: var(--secondary-background);
+}
+
+.cell {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-start;
+}
+
+.edit-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-background);
+    color: var(--text-color);
+}
+
+.action-button {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: var(--text-color);
+}
+
+.action-button:hover {
+    background-color: var(--hover-color);
+}
+
+.edit-button {
+    color: var(--primary-color);
+}
+
+.delete-button {
+    color: var(--error-color);
+}
+
+.primary-button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.secondary-button {
+    background-color: var(--border-color);
+    color: var(--text-color);
+}
+
+/* Footer row styles */
+.expense-table tfoot td {
+  border-top: 2px solid var(--border-color);
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+
+/* ==========================================================================
+ End of BudgetPage Styles
+ ========================================================================== */
+
+/* Vendor Hub Specific Styles */
+.vendor-hub-container .coming-soon-section {
+    background-color: var(--info-background); /* Use a distinct background */
+    border: 1px solid var(--info-border);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align content to the left */
+}
+
+.coming-soon-section h3 {
+    color: var(--info-text);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    display: flex; /* Align icon and text */
+    align-items: center;
+}
+
+.coming-soon-section p {
+     margin-bottom: 1rem; /* Space before the button */
+}
+
+.coming-soon-label {
+    font-weight: bold;
+    color: var(--primary-color); /* Or a different color like orange */
+    margin-left: 5px;
+}
+
+.add-edit-vendor-section {
+     margin-bottom: 1.5rem;
+     padding: 1.5rem;
+}
+
+.vendor-form .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.vendor-form .form-group.full-width {
+    grid-column: 1 / -1; /* Make notes field span full width */
+}
+
+
+.vendor-form .form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+    font-size: 0.9em;
+    color: var(--text-secondary-color);
+}
+
+.vendor-form input[type="text"],
+.vendor-form input[type="tel"],
+.vendor-form input[type="email"],
+.vendor-form input[type="date"],
+.vendor-form select,
+.vendor-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-background);
+    color: var(--text-color);
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.vendor-form textarea {
+    resize: vertical;
+}
+
+.vendor-form .form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end; /* Align buttons to the right */
+    margin-top: 1rem;
+}
+
+.vendor-list-section .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.add-vendor-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+/* Vendor Table Styles (reusing some expense styles) */
+.vendor-table {
+     width: 100%;
+     border-radius: 8px;
+     overflow: hidden; /* Ensures border-radius applies to children */
+     border: 1px solid var(--border-color); /* Add subtle border */
+     margin-top: 1rem;
+     background-color: var(--background-color); /* Ensure background */
+}
+
+
+.vendor-header, .vendor-row {
+     grid-template-columns: 1.5fr 1fr 1.5fr 1fr 1fr 0.8fr; /* Adjust column widths */
+}
+
+.vendor-row .cell.contact-details {
+     font-size: 0.9em;
+     line-height: 1.4;
+}
+
+.vendor-row .cell .sub-detail {
+    color: var(--text-secondary-color);
+    font-size: 0.9em;
+}
+
+
+/* Responsive adjustments for vendor table if needed */
+@media (max-width: 768px) {
+    .vendor-header {
+        display: none; /* Hide header on small screens */
+    }
+    .vendor-row {
+        grid-template-columns: 1fr; /* Stack cells vertically */
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        padding: 0.5rem;
+    }
+    .vendor-row .cell {
+        display: flex;
+        justify-content: space-between; /* Label on left, value on right */
+        padding: 0.5rem 0;
+        border-bottom: 1px dashed var(--border-color);
+    }
+     .vendor-row .cell:last-child {
+         border-bottom: none;
+     }
+
+    .vendor-row .cell::before {
+        content: attr(data-label); /* Use data-label for simulated header */
+        font-weight: bold;
+        margin-right: 1rem;
+        color: var(--text-secondary-color);
+    }
+    .vendor-row .cell.actions {
+         justify-content: flex-start; /* Align actions left */
+         padding-top: 0.5rem;
+     }
+     .vendor-row .cell.actions::before {
+         display: none; /* No label for actions cell */
+     }
+}
+
+
+/* ==========================================================================
+ End of Vendor Hub Styles
+ ========================================================================== */
+
+/* Add/Modify these styles */
+
+/* Timeline Form Time Input */
+.form-group-time {
+    /* Adjust layout if needed, maybe force onto one line */
+    margin-bottom: 1rem; /* Ensure spacing */
+}
+
+.time-input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem; /* Space between selects and colon */
+}
+
+.time-input-group select {
+    padding: 0.75rem 0.5rem; /* Adjust padding for dropdowns */
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-background);
+    color: var(--text-color);
+    font-size: 1em;
+    flex-grow: 1; /* Allow dropdowns to take space */
+}
+.time-input-group select[name$="Hour"] {
+    min-width: 70px; /* Give hour more space */
+}
+.time-input-group select[name$="Minute"] {
+     min-width: 65px;
+}
+.time-input-group select[name$="AmPm"] {
+    min-width: 65px;
+    flex-grow: 0; /* Don't let AM/PM grow too much */
+}
+
+
+.time-input-group span {
+    font-weight: bold;
+    color: var(--text-secondary-color);
+}
+
+/* Timeline Event Block - Actions */
+.event-actions {
+    /* Existing styles */
+    flex-direction: row; /* Maybe change actions to row for better fit? Or keep column */
+    flex-wrap: wrap; /* Allow wrapping if horizontal */
+    align-items: center;
+    justify-content: flex-end; /* Align to the right if horizontal */
+    gap: 0.5rem; /* Adjust gap */
+}
+
+.event-actions .action-button {
+    /* Existing styles */
+    color: var(--text-secondary-color);
+}
+
+.event-actions .export-button {
+    /* Specific style for export button if desired */
+     color: var(--primary-color); /* Example: make it stand out */
+}
+.event-actions .export-button:hover {
+     background-color: var(--hover-color);
+}
+
+/* Adjust Notes/Description display in event block if needed */
+.event-notes { /* Keep class or rename to event-description */
+    font-size: 0.9em;
+    color: var(--text-secondary-color);
+    display: flex;
+    align-items: flex-start; /* Align icon top */
+    gap: 0.4rem;
+    white-space: pre-wrap; /* Respect line breaks in description */
+}
+
+/* --- Timeline Builder Page --- */
+
+/* ... (keep existing .timeline-builder-container, .action-bar styles) ... */
+
+.timeline-list-section {
+    margin-top: 1.5rem;
+}
+
+.timeline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem; /* Slightly larger gap between blocks */
+}
+
+.event-block {
+    /* Inherit from status-card-item for base style + border */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.5rem; /* Increase gap for better separation */
+    padding: 1.25rem 1.5rem;
+    position: relative;
+    border-left: 5px solid var(--primary-color);
+    transition: box-shadow 0.2s ease-in-out; /* Add subtle shadow transition on hover */
+    background-color: var(--background-color); /* Ensure background */
+}
+.event-block:hover {
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow on hover */
+}
+
+/* Style for incomplete events */
+.event-block.incomplete {
+    border-left-color: var(--border-color); /* Dim the accent if incomplete */
+    opacity: 0.85; /* Slightly fade incomplete items */
+}
+
+.event-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    font-weight: 500; /* Slightly less bold */
+    color: var(--primary-color);
+    flex-shrink: 0;
+    width: 110px; /* Slightly wider */
+    text-align: center;
+    padding-top: 0.25rem;
+    font-size: 0.95em;
+}
+.event-time .time-placeholder {
+    color: var(--text-secondary-color);
+    font-style: italic;
+    font-size: 0.85em;
+}
+.event-block.incomplete .event-time {
+    color: var(--text-secondary-color); /* Dim time color if incomplete */
+}
+
+
+.event-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem; /* Adjust gap */
+    padding-top: 0.1rem; /* Align top better */
+}
+
+.event-title {
+    margin: 0;
+    font-size: 1.15em; /* Slightly larger title */
+    font-weight: 600;
+    color: var(--text-color); /* Ensure default text color */
+}
+.event-title .placeholder-text {
+    color: var(--text-secondary-color);
+    font-style: italic;
+    font-weight: 400;
+}
+
+
+.event-location,
+.event-notes { /* Renamed from .event-description for consistency if needed */
+    font-size: 0.9em;
+    color: var(--text-secondary-color);
+    display: flex;
+    align-items: flex-start; /* Keep icon aligned top */
+    gap: 0.5rem; /* Adjust icon gap */
+    line-height: 1.4; /* Improve readability */
+}
+.event-notes {
+     white-space: pre-wrap;
+}
+
+
+.event-actions {
+    display: flex;
+    flex-direction: row; /* Horizontal actions often look cleaner */
+    gap: 0.6rem; /* Adjust gap */
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: auto; /* Push actions to the right */
+    padding-top: 0.1rem;
+}
+
+.event-actions .action-button {
+    padding: 0.4rem; /* Slightly larger touch target */
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary-color);
+    border-radius: 50%; /* Circular buttons */
+    display: flex; /* Center icon */
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.event-actions .action-button:hover:not(:disabled) {
+    background-color: var(--hover-color);
+    color: var(--primary-color);
+}
+.event-actions .action-button.delete-button:hover:not(:disabled) {
+    color: var(--error-color);
+    background-color: var(--error-background-hover);
+}
+.event-actions .action-button.export-button:hover:not(:disabled) {
+     color: var(--primary-color); /* Keep primary color on hover */
+}
+
+.event-actions .action-button:disabled {
+    color: var(--border-color);
+    cursor: not-allowed;
+     background-color: transparent !important; /* Ensure no background when disabled */
+}
+
+
+/* --- Improved Dropdown Styling (Form Modal) --- */
+.time-input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--border-color); /* Group border */
+    border-radius: 6px; /* Rounded group */
+    padding: 0.25rem 0.5rem;
+    background-color: var(--input-background); /* Background for the group */
+}
+.time-input-group:focus-within { /* Highlight group when focused */
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-focus-ring);
+}
+
+
+.time-input-group select {
+    /* Reset default appearance */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: transparent; /* Use group background */
+    border: none; /* Remove individual borders */
+    padding: 0.5rem 0.3rem; /* Adjust padding */
+    font-size: 1em;
+    color: var(--text-color);
+    cursor: pointer;
+    outline: none; /* Remove default focus outline */
+    flex-grow: 1;
+    text-align: center; /* Center text */
+}
+/* Add custom arrow using background SVG */
+.time-input-group select {
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23${(getComputedStyle(document.documentElement).getPropertyValue('--text-secondary-color') || '#888').substring(1)}' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z'/%3E%3C/svg%3E"); /* Simple chevron down */
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 10px 10px; /* Adjust arrow size */
+    padding-right: 1.5rem; /* Make space for the arrow */
+}
+
+
+.time-input-group select[name$="Hour"] { min-width: 60px; flex-grow: 0.5; }
+.time-input-group select[name$="Minute"] { min-width: 60px; flex-grow: 0.5; }
+.time-input-group select[name$="AmPm"] { min-width: 60px; flex-grow: 0.5;}
+
+.time-input-group span { /* The colon */
+    font-weight: bold;
+    color: var(--text-secondary-color);
+    padding: 0 0.1rem;
+}
+
+/* Adjust overall modal form spacing if needed */
+.event-form .form-group {
+    margin-bottom: 1.25rem; /* Increase spacing between form fields */
+}
+.event-form label {
+    margin-bottom: 0.4rem; /* Space between label and input group/field */
+}
+
+/* --- Timeline Builder Page --- */
+
+/* ... (keep existing container, action bar, list, event block styles) ... */
+
+/* Inline Add Event Row Styling */
+.add-event-inline-form {
+    padding: 1rem 1.5rem; /* Adjust padding to match event blocks but maybe slightly less */
+    margin-bottom: 1.5rem; /* Space before the actual list */
+    background-color: var(--secondary-background); /* Slightly different background */
+    border: 1px dashed var(--border-color); /* Dashed border to indicate input area */
+    border-left-width: 5px; /* Keep consistent left border */
+    border-left-color: var(--secondary-color); /* Use a different accent color */
+    display: flex; /* Keep flex */
+    gap: 1.5rem; /* Keep gap */
+    align-items: flex-start; /* Align items top */
+}
+.add-event-inline-form .event-time {
+    /* Style the "Add New" section */
+    color: var(--text-secondary-color);
+}
+
+.add-event-inline-form .event-details.add-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    flex-grow: 1;
+}
+
+/* Assign grid columns to input groups */
+.add-details .title-input-group { grid-column: span 2; }
+.add-details .start-time-section { grid-column: span 1; }
+.add-details .end-time-section { grid-column: span 1; }
+.add-details .location-input-group { grid-column: span 1; }
+.add-details .description-input-group { grid-column: span 1; }
+
+
+.add-event-inline-form .inline-form-group {
+    margin-bottom: 0;
+    width: 100%; /* Ensure group takes full grid cell width */
+}
+
+/* Time Section Styling */
+.time-section {
+    display: flex;
+    flex-direction: column; /* Stack label above input group */
+}
+
+.time-section-label {
+    font-size: 0.8em; /* Smaller label */
+    font-weight: 500;
+    color: var(--text-secondary-color);
+    margin-bottom: 0.25rem; /* Space below label */
+    text-align: left; /* Align label text left */
+    padding-left: 0.1rem; /* Slight indent */
+}
+
+/* Styling for inputs within the inline form */
+.add-event-inline-form .inline-input,
+.add-event-inline-form .time-input-group {
+    width: 100%;
+    font-size: 0.95em;
+}
+
+.add-event-inline-form .time-input-group.inline-time-group {
+     /* Keep existing styles (padding, font-size, border, etc.) */
+     /* Maybe slightly less padding if needed */
+     padding: 0.1rem 0.3rem;
+}
+.add-event-inline-form .time-input-group.inline-time-group select {
+     /* Keep existing styles */
+     padding: 0.35rem 0.2rem; /* Adjust if needed */
+     padding-right: 1.2rem;
+}
+
+/* Adjust Add button alignment if needed */
+.add-event-inline-form .event-actions.add-action {
+    align-self: end; /* Align button to bottom */
+    padding-bottom: 0.1rem; /* Adjust alignment fine-tuning */
+}
+
+/* Responsive adjustments for the inline grid */
+@media (max-width: 992px) { /* Example breakpoint */
+    .add-event-inline-form .event-details.add-details {
+        grid-template-columns: repeat(3, 1fr); /* Adjust columns for medium screens */
+    }
+     .add-details .title-input-group { grid-column: span 1; }
+     .add-details .location-input-group { grid-column: span 1; }
+     .add-details .description-input-group { grid-column: span 1; }
+     /* Time sections remain span 1 */
+}
+
+@media (max-width: 768px) { /* Example breakpoint */
+    .add-event-inline-form .event-details.add-details {
+        grid-template-columns: repeat(2, 1fr); /* Adjust columns for smaller screens */
+    }
+     .add-details .title-input-group { grid-column: span 2; } /* Title full width */
+     .add-details .start-time-section { grid-column: span 1; }
+     .add-details .end-time-section { grid-column: span 1; }
+     .add-details .location-input-group { grid-column: span 1; }
+     .add-details .description-input-group { grid-column: span 1; }
+}
+
+
+.add-event-inline-form .event-actions.add-action {
+    margin-left: 1rem; /* Adjust margin */
+    align-self: center; /* Center the add button vertically */
+}
+
+.add-event-btn-inline {
+    padding: 0.6rem 1rem; /* Adjust padding */
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    /* Use primary button styles from before */
+}
+
+/* Screen-reader only class (if not defined elsewhere) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Edit Modal specific class if needed */
+.edit-modal {
+    /* Add specific styles if the edit modal needs to differ */
+}
+
+/* --- Timeline Builder Page --- */
+
+/* ... (keep existing container, action bar, list, event block styles) ... */
+
+/* Inline Add Event Row Styling */
+.add-event-inline-form {
+    padding: 1rem 1.5rem; /* Adjust padding to match event blocks but maybe slightly less */
+    margin-bottom: 1.5rem; /* Space before the actual list */
+    background-color: var(--secondary-background); /* Slightly different background */
+    border: 1px dashed var(--border-color); /* Dashed border to indicate input area */
+    border-left-width: 5px; /* Keep consistent left border */
+    border-left-color: var(--secondary-color); /* Use a different accent color */
+    display: flex; /* Keep flex */
+    gap: 1.5rem; /* Keep gap */
+    align-items: flex-start; /* Align items top */
+}
+.add-event-inline-form .event-time {
+    /* Style the "Add New" section */
+    color: var(--text-secondary-color);
+}
+
+.add-event-inline-form .event-details.add-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    flex-grow: 1;
+}
+
+/* Assign grid columns to input groups */
+.add-details .title-input-group { grid-column: span 2; }
+.add-details .start-time-section { grid-column: span 1; }
+.add-details .end-time-section { grid-column: span 1; }
+.add-details .location-input-group { grid-column: span 1; }
+.add-details .description-input-group { grid-column: span 1; }
+
+
+.add-event-inline-form .inline-form-group {
+    margin-bottom: 0;
+    width: 100%; /* Ensure group takes full grid cell width */
+}
+
+/* Time Section Styling */
+.time-section {
+    display: flex;
+    flex-direction: column; /* Stack label above input group */
+}
+
+.time-section-label {
+    font-size: 0.8em; /* Smaller label */
+    font-weight: 500;
+    color: var(--text-secondary-color);
+    margin-bottom: 0.25rem; /* Space below label */
+    text-align: left; /* Align label text left */
+    padding-left: 0.1rem; /* Slight indent */
+}
+
+/* Styling for inputs within the inline form */
+.add-event-inline-form .inline-input,
+.add-event-inline-form .time-input-group {
+    width: 100%;
+    font-size: 0.95em;
+}
+
+.add-event-inline-form .time-input-group.inline-time-group {
+     /* Keep existing styles (padding, font-size, border, etc.) */
+     /* Maybe slightly less padding if needed */
+     padding: 0.1rem 0.3rem;
+}
+.add-event-inline-form .time-input-group.inline-time-group select {
+     /* Keep existing styles */
+     padding: 0.35rem 0.2rem; /* Adjust if needed */
+     padding-right: 1.2rem;
+}
+
+/* Adjust Add button alignment if needed */
+.add-event-inline-form .event-actions.add-action {
+    align-self: end; /* Align button to bottom */
+    padding-bottom: 0.1rem; /* Adjust alignment fine-tuning */
+}
+
+/* Responsive adjustments for the inline grid */
+@media (max-width: 992px) { /* Example breakpoint */
+    .add-event-inline-form .event-details.add-details {
+        grid-template-columns: repeat(3, 1fr); /* Adjust columns for medium screens */
+    }
+     .add-details .title-input-group { grid-column: span 1; }
+     .add-details .location-input-group { grid-column: span 1; }
+     .add-details .description-input-group { grid-column: span 1; }
+     /* Time sections remain span 1 */
+}
+
+@media (max-width: 768px) { /* Example breakpoint */
+    .add-event-inline-form .event-details.add-details {
+        grid-template-columns: repeat(2, 1fr); /* Adjust columns for smaller screens */
+    }
+     .add-details .title-input-group { grid-column: span 2; } /* Title full width */
+     .add-details .start-time-section { grid-column: span 1; }
+     .add-details .end-time-section { grid-column: span 1; }
+     .add-details .location-input-group { grid-column: span 1; }
+     .add-details .description-input-group { grid-column: span 1; }
+}
+
+
+.add-event-inline-form .event-actions.add-action {
+    margin-left: 1rem; /* Adjust margin */
+    align-self: center; /* Center the add button vertically */
+}
+
+.add-event-btn-inline {
+    padding: 0.6rem 1rem; /* Adjust padding */
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    /* Use primary button styles from before */
+}
+
+/* Screen-reader only class (if not defined elsewhere) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Edit Modal specific class if needed */
+.edit-modal {
+    /* Add specific styles if the edit modal needs to differ */
+}
+
+/* Floating Rings */
+.floating-rings-container {
+  position: fixed; /* Or absolute relative to body/root */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevent scrollbars */
+  pointer-events: none; /* Allow clicks to pass through */
+  z-index: -1; /* Place behind everything */
+}
+
+/* Media queries for responsive layout */
+@media (max-width: 768px) {
+  .add-event-inline-form {
+    flex-direction: column;
+  }
+  
+  .add-event-inline-form .event-time {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  
+  .add-event-inline-form .event-details.add-details {
+    grid-template-columns: 1fr;
+  }
+  
+  .title-input-group,
+  .start-time-section,
+  .end-time-section,
+  .location-input-group,
+  .description-input-group {
+    grid-column: 1;
+  }
+  
+  .event-actions {
+    margin-top: 1rem;
+  }
+}
+
+/* Timeline Event Styling */
+.event-block {
+  display: flex;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.event-block:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.event-block .event-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.time-separator {
+  margin: 0.25rem 0;
+  color: var(--light-text);
+}
+
+.event-block .event-details {
+  flex-grow: 1;
+}
+
+.event-block .event-title {
+  font-size: 1.25rem;
+  margin: 0 0 0.75rem 0;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.event-block .event-location,
+.event-block .event-notes {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.event-block .event-location svg,
+.event-block .event-notes svg {
+  color: var(--light-text);
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.event-block .event-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.event-actions .action-button {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.event-actions .action-button:hover:not(:disabled) {
+  background-color: var(--secondary-color);
+  transform: scale(1.1);
+}
+
+.event-actions .action-button.delete-button:hover:not(:disabled) {
+  background-color: var(--error-color);
+  color: white;
+  border-color: var(--error-color);
+}
+
+.event-actions .action-button.edit-button:hover:not(:disabled) {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.event-actions .action-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .event-block {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .event-block .event-time {
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .time-separator {
+    margin: 0 0.25rem;
+  }
+  
+  .event-block .event-actions {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 0.75rem;
+  }
+}
+
+/* Floating Rings */
+.floating-rings-container {
+  position: fixed; /* Or absolute relative to body/root */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevent scrollbars */
+  pointer-events: none; /* Allow clicks to pass through */
+  z-index: -1; /* Place behind everything */
+}
+
+/* Timeline Builder Event Form Styles */
+.add-event-inline-form {
+  display: flex;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.add-event-inline-form .event-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+.add-event-inline-form .event-details.add-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+.title-input-group {
+  grid-column: span 2;
+}
+
+.start-time-section,
+.end-time-section {
+  grid-column: span 1;
+}
+
+.location-input-group {
+  grid-column: span 1;
+}
+
+.description-input-group {
+  grid-column: span 1;
+}
+
+.generate-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.generate-single-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+}
+
+/* Fix textarea overflow */
+textarea {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Fix email text specifically */
+.generated-email-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Force card width containment */
+.reminder-guest-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* ---- Chatbot Styles ---- */
+.chatbot-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 2rem;
+}
+
+.chatbot-container {
+  max-width: 900px;
+  width: 100%;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 150px);
+}
+
+.chatbot-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--secondary-color);
+  text-align: center;
+}
+
+.chatbot-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0 0 0.25rem 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.chatbot-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--light-text);
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.api-key-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 450px;
+  margin: 0 auto;
+  padding-top: 0.5rem;
+}
+
+.api-key-form label {
+  font-size: 0.85rem;
+  color: var(--light-text);
+  text-align: left;
+}
+
+.api-key-input {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  transition: var(--transition);
+  width: 100%;
+}
+
+.api-key-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 30%, transparent 70%);
+}
+
+.chatbot-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message {
+  display: flex;
+  align-items: flex-start;
+  max-width: 80%;
+}
+
+.user-message {
+  margin-left: auto;
+  justify-content: flex-end;
+}
+
+.assistant-message {
+  margin-right: auto;
+  justify-content: flex-start;
+}
+
+.message-bubble {
+  padding: 0.75rem 1rem;
+  border-radius: 18px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.user-message .message-bubble {
+  background-color: var(--primary-color);
+  color: white;
+  border-bottom-right-radius: 5px;
+}
+
+.assistant-message .message-bubble {
+  background-color: color-mix(in srgb, var(--secondary-color) 50%, var(--card-bg) 50%);
+  color: var(--text-color);
+  border-bottom-left-radius: 5px;
+}
+
+html[data-theme='dark'] .assistant-message .message-bubble {
+  background-color: color-mix(in srgb, var(--card-bg) 50%, #3a3a3a 50%);
+}
+
+.typing-indicator {
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  min-width: 60px;
+  min-height: 20px;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  background-color: var(--light-text);
+  border-radius: 50%;
+  display: inline-block;
+  animation: typingBounce 1.5s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(1) { animation-delay: 0s; }
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-6px); }
+}
+
+.chatbot-input-form {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  background-color: var(--card-bg);
+}
+
+.chatbot-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.chatbot-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 30%, transparent 70%);
+}
+
+.chatbot-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.send-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.send-button:hover:not(:disabled) {
+  background-color: var(--accent-color);
+  transform: scale(1.05);
+}
+
+.send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive chatbot styles */
+@media (max-width: 768px) {
+  .chatbot-container {
+    height: calc(100vh - 120px);
+    margin: 0 0.5rem;
+  }
+  
+  .message {
+    max-width: 90%;
+  }
+  
+  .chatbot-title {
+    font-size: 1.5rem;
+  }
+  
+  .chatbot-subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .chatbot-header {
+    padding: 1rem;
+  }
+  
+  .chatbot-messages {
+    padding: 1rem;
+  }
+  
+  .message {
+    max-width: 95%;
+  }
+  
+  .message-bubble {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
   }
 }
