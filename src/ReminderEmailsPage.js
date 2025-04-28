@@ -9,10 +9,11 @@ const generateEmailReminders = async (guestsToRemind, additionalFacts, rsvpDeadl
   console.log("Calling backend to generate reminders for:", guestsToRemind.map(g => g.name));
   console.log("RSVP Deadline Date to send:", rsvpDeadlineDate);
 
-  const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001/api/generate-reminders';
+  const baseUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001'; // Get base URL
+  const remindersEndpoint = `${baseUrl}/api/generate-reminders`; // Append specific endpoint path
 
   try {
-    const response = await fetch(backendUrl, {
+    const response = await fetch(remindersEndpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

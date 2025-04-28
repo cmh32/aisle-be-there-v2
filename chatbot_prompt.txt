@@ -1,0 +1,2 @@
+now, I want to add a Home Page to the app. This homepage should act as a landing spot for the couple as they think about the workflow of their wedding.
+

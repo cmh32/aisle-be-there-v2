@@ -114,7 +114,7 @@ function VendorHubPage({ vendors = [], setVendors }) { // Default vendors to emp
                     <input 
                         type="text" 
                         className="search-input" 
-                        placeholder="Find and compare local vendors..." 
+                        placeholder="Search vendors..." 
                         disabled 
                     />
                 </div>

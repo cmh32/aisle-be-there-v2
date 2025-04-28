@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Georgia&family=Lato:ital,wght@0,400;0,700;1,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@400;600;700&display=swap');
+
 /* ==========================================================================
    src/WeddingPlannerApp.css - COMPLETE FILE V13 (Restored Styled Date Select)
    ========================================================================== */
@@ -139,8 +141,8 @@ margin: 0;
    .navbar-container { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; flex-wrap: wrap; }
    .navbar-brand { flex-shrink: 0; margin-right: 1rem; }
    .navbar-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
-   .navbar-links { display: flex; gap: 1.5rem; align-items: center; margin: 0 auto; }
-   .nav-link { color: var(--text-color); text-decoration: none; font-size: 0.95rem; font-weight: 500; padding: 0.5rem 0.25rem; border-bottom: 3px solid transparent; transition: var(--transition); position: relative; white-space: nowrap; }
+   .navbar-links { display: flex; gap: 0.75rem; /* Significantly reduced gap */ align-items: center; margin: 0 auto; }
+   .nav-link { color: var(--text-color); text-decoration: none; font-size: 0.85rem; /* Significantly reduced font size */ font-weight: 500; padding: 0.5rem 0.2rem; /* Reduced padding slightly */ border-bottom: 3px solid transparent; transition: var(--transition); position: relative; white-space: nowrap; }
    .nav-link:hover { color: var(--primary-color); }
    .nav-link.active { color: var(--primary-color); font-weight: 600; border-bottom-color: var(--primary-color); }
    .navbar-actions { display: flex; align-items: center; gap: 0.75rem; margin-left: auto; }
@@ -716,8 +718,8 @@ margin: 0;
 }
 
 .couple-photo-placeholder {
-  width: 90px;
-  height: 90px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   background-color: var(--card-bg);
   border: 1px dashed var(--border-color);
@@ -2700,3 +2702,729 @@ html[data-theme='dark'] .assistant-message .message-bubble {
     font-size: 0.9rem;
   }
 }
+
+/* ==========================================================================
+   Document Repository Page Styles
+   ========================================================================== */
+
+.document-repository-container .page-title {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.document-repository-container .page-subtitle {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: var(--light-text);
+  font-size: 1.1rem;
+}
+
+/* --- Upload Section --- */
+.upload-section {
+  border: 2px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  background-color: color-mix(in srgb, var(--card-bg) 50%, var(--background-color) 50%);
+  transition: background-color var(--transition), border-color var(--transition);
+  position: relative; /* For positioning progress/status */
+}
+
+.upload-section.dragging {
+  border-color: var(--primary-color);
+  background-color: color-mix(in srgb, var(--secondary-color) 50%, var(--background-color) 50%);
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--light-text);
+}
+
+.upload-icon-large {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.upload-content p {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.upload-separator {
+  font-size: 0.9rem !important;
+  font-style: italic;
+  color: var(--light-text);
+}
+
+.upload-content .action-button {
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.upload-hint {
+  font-size: 0.8rem !important;
+  color: var(--light-text);
+  margin-top: 0.5rem !important;
+}
+
+/* Upload Progress */
+.upload-progress-indicator {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+}
+.upload-progress-indicator p {
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+.progress-bar-container {
+  height: 8px;
+  background-color: var(--border-color);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--primary-color);
+  transition: width 0.2s ease-out;
+  border-radius: 999px;
+}
+.upload-progress-indicator span {
+  font-size: 0.8rem;
+  color: var(--light-text);
+}
+
+/* Upload Status */
+.upload-status-message {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.upload-status-message.success {
+  background-color: var(--success-background);
+  border: 1px solid var(--success-border);
+  color: var(--success-text);
+}
+
+.upload-status-message.error {
+  background-color: var(--error-background);
+  border: 1px solid var(--error-border);
+  color: var(--error-text);
+}
+
+.close-status-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    opacity: 0.7;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+}
+.close-status-btn:hover {
+    opacity: 1;
+}
+
+/* --- Document List Section --- */
+.document-list-section {
+  margin-top: 2rem;
+}
+
+.document-controls {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between; /* Adjust as needed */
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.search-bar-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  max-width: 400px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  color: var(--light-text);
+  font-size: 0.9rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.6rem 0.75rem 0.6rem 2.25rem; /* Space for icon */
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  transition: var(--transition);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 30%, transparent 70%);
+}
+
+.clear-search-btn {
+    position: absolute;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--light-text);
+    cursor: pointer;
+    padding: 0.25rem;
+    opacity: 0.7;
+}
+.clear-search-btn:hover {
+    opacity: 1;
+    color: var(--error-color);
+}
+
+/* --- Document Table --- */
+.document-table-container {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  background-color: var(--card-bg);
+  overflow-x: auto;
+}
+
+.document-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 650px; /* Ensure readability */
+  table-layout: auto; /* Allow columns to adjust */
+}
+
+.document-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: var(--secondary-color);
+  color: var(--accent-color);
+  border-bottom: 2px solid var(--primary-color);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+html[data-theme='dark'] .document-table th {
+  background-color: #2c2c2c;
+  color: #adb5bd;
+  border-bottom-color: #555;
+}
+
+.document-table td {
+  padding: 0.8rem 1rem;
+  border-top: 1px solid var(--border-color);
+  vertical-align: middle;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  white-space: nowrap; /* Keep content on one line initially */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.document-item-row:nth-child(even) {
+  background-color: var(--table-row-stripe-bg);
+}
+.document-item-row:hover {
+   background-color: var(--secondary-color);
+}
+html[data-theme='dark'] .document-item-row:hover {
+   background-color: #3a3a3a;
+}
+
+/* Column Specific Styles */
+.document-table .col-icon {
+  width: 50px;
+  text-align: center;
+  padding-right: 0;
+  white-space: nowrap;
+}
+.document-table .col-name {
+  width: 45%; /* Give name more space */
+  white-space: normal; /* Allow filename to wrap */
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+.document-table .col-date {
+  width: 25%;
+}
+.document-table .col-size {
+  width: 10%;
+  text-align: right;
+}
+.document-table .col-actions {
+  width: 100px;
+  text-align: center;
+  padding-left: 0;
+}
+
+.file-type-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  vertical-align: middle;
+}
+
+.document-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.action-icon {
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--light-text);
+  transition: color var(--transition), transform var(--transition);
+  display: inline-flex; /* For alignment */
+}
+.action-icon:hover {
+  transform: scale(1.1);
+}
+
+.download-link {
+  color: var(--info-color);
+}
+.download-link:hover {
+  color: color-mix(in srgb, var(--info-color) 80%, black 20%);
+}
+
+.delete-button {
+  color: var(--error-color);
+}
+.delete-button:hover {
+  color: color-mix(in srgb, var(--error-color) 80%, black 20%);
+}
+
+/* Loading Indicator */
+.loading-indicator {
+  text-align: center;
+  padding: 3rem;
+  color: var(--light-text);
+  font-style: italic;
+}
+
+/* Empty State */
+.empty-state-message {
+  text-align: center;
+  padding: 3rem 2rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  margin-top: 1.5rem;
+  color: var(--light-text);
+}
+
+.empty-state-icon {
+  font-size: 3.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.empty-state-message h3 {
+  color: var(--text-color);
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.empty-state-message p {
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.empty-state-message .action-button {
+  padding: 0.75rem 1.5rem;
+}
+
+/* --- Delete Confirmation Modal --- */
+.confirmation-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100; /* Above navbar */
+}
+
+.confirmation-modal {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  max-width: 450px;
+  width: 90%;
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.confirmation-modal h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  color: var(--primary-color);
+}
+
+.confirmation-modal p {
+  margin: 0 0 1.5rem 0;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.confirmation-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.confirmation-actions .action-button {
+  padding: 0.6rem 1.2rem;
+  min-width: 100px;
+}
+
+/* Define danger button if not already defined globally */
+.danger-button {
+  background-color: var(--error-color);
+  color: white;
+}
+.danger-button:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--error-color) 85%, black 15%);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .document-table {
+    min-width: 0;
+  }
+
+  .document-table th {
+    font-size: 0.65rem;
+    padding: 0.6rem 0.5rem;
+  }
+
+  .document-table td {
+    font-size: 0.8rem;
+    padding: 0.7rem 0.5rem;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .document-table .col-icon {
+    width: 40px;
+  }
+  .document-table .col-name {
+    width: auto; /* Let name take remaining space */
+  }
+  .document-table .col-date,
+  .document-table .col-size {
+     /* Hide less critical columns or make them smaller */
+     display: none; /* Example: hide date/size on small screens */
+  }
+  .document-table .col-actions {
+    width: 80px;
+  }
+  .action-icon {
+      font-size: 1rem;
+      gap: 0.5rem;
+  }
+  .upload-section {
+      padding: 1.5rem;
+  }
+  .document-controls {
+      flex-direction: column;
+      align-items: stretch;
+  }
+  .search-bar-container {
+      max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+    .document-repository-container .page-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    .upload-content p {
+        font-size: 1rem;
+    }
+    .upload-content .action-button {
+        width: 100%;
+    }
+     .document-table th,
+     .document-table td {
+        padding: 0.5rem 0.4rem;
+     }
+     .document-table .col-actions {
+        width: 70px;
+     }
+     .document-actions {
+         gap: 0.5rem;
+     }
+     .action-icon {
+         font-size: 0.9rem;
+     }
+}
+
+/* ==========================================================================
+   >>> NEW <<< Invitation Generator Page Styles (Append to existing CSS)
+   ========================================================================== */
+
+   .invitation-generator-page .app-subtitle {
+    margin-bottom: 2rem; /* More space after subtitle */
+}
+
+.invitation-content-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns: form | preview */
+    gap: 2rem;
+    align-items: flex-start; /* Align tops of columns */
+}
+
+.invitation-form-section {
+    /* Inherits .status-card-item styles */
+}
+
+.invitation-form .form-grid {
+    /* Reuses styles from VendorHub/Budget */
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */ /* Comment out or remove this */
+    grid-template-columns: 1fr 1fr; /* Force a two-column layout */
+    gap: 1rem;
+    margin-bottom: 1rem; /* Space before actions */
+}
+
+.invitation-form .form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+/* Ensure labels are styled if not globally done */
+.invitation-form .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    color: var(--light-text);
+}
+
+/* Ensure inputs/textareas reuse vendor/budget input styles */
+.invitation-form .vendor-input { /* Assuming this class is used */
+    width: 90%;
+    /* Add padding, border, etc. if not inherited */
+}
+.invitation-form textarea.vendor-input {
+    resize: vertical;
+    min-height: 60px;
+}
+
+
+.invitation-form .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.invitation-preview-section {
+    /* Inherits .status-card-item styles */
+    position: sticky; /* Keep preview visible while scrolling form */
+    top: 90px; /* Adjust based on navbar height + desired offset */
+    /* Increase if navbar is taller */
+    max-height: calc(100vh - 120px); /* Limit height to prevent overflow */
+    overflow-y: auto; /* Allow preview section itself to scroll if content exceeds max-height */
+}
+
+.svg-preview-container {
+    min-height: 350px; /* Ensure container has some height */
+    max-height: 75vh; /* Limit inner container height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--table-row-stripe-bg); /* Light background for contrast */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-top: 1rem;
+    overflow: auto; /* Allow scrolling within this container if SVG is large */
+}
+
+.loading-preview,
+.error-preview,
+.empty-preview {
+    text-align: center;
+    color: var(--light-text);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; /* Take available space */
+}
+
+.loading-preview .spinner {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.error-preview svg {
+    color: var(--error-color);
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+.error-preview p {
+    margin-bottom: 0.5rem;
+}
+.error-preview .error-message-text {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--error-color);
+    margin-top: 0.5rem;
+    white-space: pre-wrap;
+    word-break: break-all;
+    background-color: rgba(239, 68, 68, 0.1);
+    padding: 0.5rem;
+    border-radius: 4px;
+    max-height: 150px; /* Limit error message height */
+    overflow-y: auto;
+    text-align: left;
+    width: 100%;
+    max-width: 450px;
+}
+
+
+.empty-preview svg {
+    color: var(--border-color);
+    margin-bottom: 1rem;
+}
+.empty-preview p {
+     margin-bottom: 0.5rem;
+}
+
+
+/* Styling for the rendered SVG container and the SVG itself */
+.svg-invitation-preview {
+    width: 100%;
+    max-width: 500px; /* Limit width, aspect ratio controlled by viewBox */
+    border: 1px dashed var(--light-text); /* Optional border around SVG */
+    background-color: white; /* Ensure white background for typical invite look */
+    margin-bottom: 1rem;
+    padding: 5px; /* Small padding so border isn't touching SVG edge */
+    box-shadow: var(--shadow-sm);
+}
+
+html[data-theme='dark'] .svg-invitation-preview {
+    background-color: #f0f0f0; /* Light background for SVG in dark mode for contrast */
+}
+
+
+/* Style the SVG element rendered inside the container */
+.svg-invitation-preview svg {
+    display: block; /* Remove extra space below SVG */
+    width: 100%;    /* Make SVG fill its container */
+    height: auto;   /* Maintain aspect ratio defined by viewBox */
+    max-height: 60vh; /* Prevent SVG from becoming excessively tall */
+}
+
+.copy-svg-button {
+    margin-top: 1rem;
+    gap: 0.5rem;
+    flex-shrink: 0; /* Prevent button shrinking */
+}
+.copy-svg-note {
+    font-size: 0.75rem;
+    color: var(--light-text);
+    margin-top: 0.5rem;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.preview-disclaimer {
+    font-size: 0.8rem;
+    color: var(--light-text);
+    font-style: italic;
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 0 1rem;
+    flex-shrink: 0;
+}
+
+
+/* Responsive adjustments for the layout */
+@media (max-width: 992px) {
+    .invitation-content-layout {
+        grid-template-columns: 1fr; /* Stack columns */
+    }
+    .invitation-preview-section {
+        position: static; /* Don't be sticky on smaller screens */
+        margin-top: 2rem;
+        max-height: none; /* Remove max height when not sticky */
+    }
+     .svg-invitation-preview {
+        max-width: 100%; /* Allow SVG container to fill width */
+    }
+    .svg-preview-container {
+         max-height: none; /* Remove max height */
+         min-height: 250px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .invitation-form .form-grid {
+        grid-template-columns: 1fr; /* Single column form */
+    }
+     .svg-invitation-preview svg {
+        max-height: 50vh; /* Adjust max height for smaller screens */
+    }
+}
+
+/* --- END Invitation Generator Styles --- */
+
+/* Styling for the AI Generated Image Preview */
+.ai-invitation-preview-image {
+    display: block; /* Prevent extra space below image */
+    max-width: 100%; /* Ensure image fits container */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 65vh; /* Limit height, adjust as needed */
+    margin: 0 auto 1rem auto; /* Center and add space below */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    background-color: var(--table-row-stripe-bg); /* Show loading bg */
+}
+
+
+/* --- END Invitation Generator Styles --- */

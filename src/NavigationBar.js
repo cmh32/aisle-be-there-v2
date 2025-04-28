@@ -1,15 +1,18 @@
-// src/NavigationBar.js - V7 (Dashboard Link is Text)
+// src/NavigationBar.js - Reordered & Renamed Links
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-// --- REMOVE LayoutDashboard import ---
-import { Sun, Moon, Home, Users, Mail, DollarSign, Briefcase, Clock, MessagesSquare } from 'lucide-react';
+import { Sun, Moon, Home, Users, Mail, DollarSign, Briefcase, Clock, MessagesSquare, FileText, Palette, MessageCircle } from 'lucide-react';
 import './WeddingPlannerApp.css';
+import { FaFolderOpen } from 'react-icons/fa'; // Keep existing icons
 
 function NavigationBar({ isDarkMode, setIsDarkMode }) {
 
   const toggleDarkMode = () => {
     setIsDarkMode(prevMode => !prevMode);
   };
+
+  // Function not needed if using NavLink className prop directly
+  // const getLinkClass = (path) => { ... };
 
   return (
     <nav className="navbar">
@@ -19,45 +22,32 @@ function NavigationBar({ isDarkMode, setIsDarkMode }) {
         </div>
 
         <div className="navbar-links">
-           <NavLink
-             to="/"
-             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
-             end
-           >
+           <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} end>
              <Home size={18} /> Dashboard
            </NavLink>
-           <NavLink 
-             to="/guest-list" 
-             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
-           >
-             <Users size={18} /> Guest List
+           <NavLink to="/guest-list" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+             <Users size={18} /> Guest
            </NavLink>
-           <NavLink 
-             to="/budget" 
-             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
-           >
+           <NavLink to="/reminders" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+             <Mail size={18} /> RSVP Reminders
+           </NavLink>
+           <NavLink to="/budget" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
              <DollarSign size={18} /> Budget
            </NavLink>
-           <NavLink 
-             to="/vendor-hub" 
-             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
-           >
+           <NavLink to="/vendor-hub" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
              <Briefcase size={18} /> Vendor Hub
            </NavLink>
            <NavLink to="/timeline" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-             <Clock size={18} /> Timeline
+             <Clock size={18} /> Timeline Builder
            </NavLink>
-           <NavLink 
-             to="/reminders" 
-             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
-           >
-             <Mail size={18} /> Reminders
+           <NavLink to="/documents" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+             <FaFolderOpen /> Documents
            </NavLink>
-           <NavLink 
-             to="/chatbot" 
-             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
-           >
-             <MessagesSquare size={18} /> Wedding Assistant
+           <NavLink to="/invitations" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+             <FileText size={18} /> Invitations
+           </NavLink>
+           <NavLink to="/chatbot" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+             <MessageCircle size={18} /> Wedding Assistant
            </NavLink>
         </div>
 

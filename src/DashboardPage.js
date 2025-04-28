@@ -17,7 +17,8 @@ import {
     ArrowRight,     // Arrow Icon for ArrowRight
     Upload,         // Upload Icon for photo upload
     X,              // X Icon for removing photo
-    MessagesSquare  // Wedding Assistant chatbot
+    MessagesSquare, // Wedding Assistant chatbot
+    FileText        // File Text Icon for Invitation Generator
 } from 'lucide-react';
 import './WeddingPlannerApp.css'; // Use shared CSS file
 
@@ -207,27 +208,34 @@ function DashboardPage({
                  </div>
             </section>
 
-            {/* Planning Steps Grid */}
+            {/* Planning Steps Grid - REORDERED to match Nav Bar */}
             <section className="planning-steps-grid">
-                {/* Budget Tracker Card - Links to /budget */}
-                {renderStatusCard(
-                    "Budget Tracker",
-                    "Track expenses & payments",
-                    <DollarSign size={24} />,
-                    "/budget",
-                    allottedBudget ? `${formatCurrency(allottedBudget)} Allotted` : null
-                )}
 
-                {/* Guest List Manager Card - Links to /guest-list */}
+                {/* 1. Guest Manager (Matches Nav #2) */}
                  {renderStatusCard(
                     "Guest Manager",
-                    "Manage RSVPs & invites",
+                    `${guests?.length || 0} Guests`, // Show guest count
                     <Users size={24} />,
-                    "/guest-list",
-                    `${guests?.length || 0} Guests`
+                    "/guest-list"
                  )}
 
-                {/* Vendor Hub Card */}
+                {/* 2. Email Reminders (Matches Nav #3 - RSVP Reminders) */}
+                {renderStatusCard(
+                    "Email Reminders",
+                    "Send RSVP follow-ups.",
+                    <ListChecks size={24} />,
+                    "/reminders" // Links to the RSVP Reminders page
+                )}
+
+                {/* 3. Budget Tracker (Matches Nav #4) */}
+                {renderStatusCard(
+                    "Budget Tracker",
+                    allottedBudget ? `${formatCurrency(allottedBudget)} Allotted` : "Track expenses & payments", // Show allocated budget if available
+                    <DollarSign size={24} />,
+                    "/budget"
+                )}
+
+                {/* 4. Vendor Hub (Matches Nav #5) */}
                 {renderStatusCard(
                     "Vendor Hub",
                     "Manage contracts & contacts",
@@ -235,7 +243,7 @@ function DashboardPage({
                     "/vendor-hub"
                 )}
 
-                {/* Timeline Builder Card */}
+                {/* 5. Timeline Builder (Matches Nav #6) */}
                 {renderStatusCard(
                     "Timeline Builder",
                     "Plan your day-of schedule",
@@ -243,37 +251,32 @@ function DashboardPage({
                     "/timeline"
                 )}
 
-                {/* Design & Inspiration Card */}
-                {renderStatusCard(
-                    "Design & Inspiration",
-                    "Mood boards & style guides.",
-                    <Palette size={24} />,
-                    null
-                )}
-
-                {/* Document Repository Card */}
+                {/* 6. Document Repository (Matches Nav #7) */}
                 {renderStatusCard(
                     "Document Repository",
                     "Store contracts & docs.",
                     <BookOpen size={24} />,
-                    null
+                    "/documents"
                 )}
 
-                {/* Reminder Emails Card */}
+                {/* Inserted: Invitation Generator (Matches Nav #10) - Now #7 */}
                 {renderStatusCard(
-                    "Email Reminders",
-                    "Send RSVP follow-ups.",
-                    <ListChecks size={24} />,
-                    "/reminders"
+                    "Invitation Generator",
+                    "Design & send invitations",
+                    <FileText size={24} />,
+                    "/invitations"
                 )}
-                
-                {/* Wedding Assistant Chatbot Card */}
+
+                {/* 8. Wedding Assistant (Matches Nav #9) - Now #8 */}
                 {renderStatusCard(
                     "Wedding Assistant",
                     "AI-powered planning help",
                     <MessagesSquare size={24} />,
                     "/chatbot"
                 )}
+
+                 {/* Note: Invitation Generator (Nav #10) is not a card here. */}
+
             </section>
 
              {/* Footer */}
