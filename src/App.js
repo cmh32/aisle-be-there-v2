@@ -15,6 +15,7 @@ import TimelineBuilderPage from './TimelineBuilderPage';
 import ChatbotPage from './ChatbotPage';
 import DocumentRepositoryPage from './DocumentRepositoryPage';
 import FloatingRings from './components/FloatingRings';
+import EmbeddedChatbot from './components/EmbeddedChatbot';
 import './WeddingPlannerApp.css';
 
 // Helper functions (assuming these exist as provided before)
@@ -233,6 +234,16 @@ function App() {
           />
         </Routes>
       </main>
+      <EmbeddedChatbot
+          guests={guests}
+          formattedWeddingDate={formattedWeddingDate}
+          countdownDays={countdownDays}
+          rsvpDeadlineDate={rsvpDeadlineDate}
+          expenses={expenses}
+          allottedBudget={allottedBudget}
+          vendors={vendors}
+          timelineEvents={timelineEvents}
+      />
     </>
   );
 }

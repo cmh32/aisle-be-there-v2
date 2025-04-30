@@ -383,14 +383,16 @@ app.post('/api/generate-invitation-image', async (req, res) => {
 
     try {
         const response = await openai.images.generate({
-            model: "dall-e-3", // Or "dall-e-2" if preferred/available
+            model: "gpt-image-1", // Explicitly using dall-e-3, preferred for quality over dall-e-2
             prompt: visualPrompt,
             n: 1,
-            size: "1024x1792", // DALL-E 3 size, close to 5:7 ratio
-            response_format: "url", // Get a temporary URL
-            // quality: "hd", // Optional: use hd for potentially higher detail (may cost more)
+            size: "1536x1024", // DALL-E 3 requires size. 1024x1792 is standard vertical (close to 5:7)
+            quality: "low",
             // style: "vivid", // Optional: or "natural"
         });
+
+        // Log the *entire* response object for debugging
+        console.log("Full OpenAI Image API Response:", JSON.stringify(response, null, 2));
 
         const imageUrl = response.data?.[0]?.url;
 
@@ -398,8 +400,9 @@ app.post('/api/generate-invitation-image', async (req, res) => {
             console.log("Successfully received Image URL from OpenAI.");
             res.json({ imageUrl: imageUrl });
         } else {
-            console.error("OpenAI response did not contain a valid image URL:", response.data);
-            res.status(500).json({ error: "Failed to extract image URL from AI response." });
+            console.error("OpenAI response did not contain a valid image URL. Check the full response log above.", response.data); // Log the data part
+            // Send more details back for debugging if appropriate, or keep a generic error
+            res.status(500).json({ error: "Failed to extract image URL from AI response.", details: response.data }); // Include response data in error
         }
 
     } catch (error) {

@@ -1,7 +1,7 @@
 // src/NavigationBar.js - Reordered & Renamed Links
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Sun, Moon, Home, Users, Mail, DollarSign, Briefcase, Clock, MessagesSquare, FileText, Palette, MessageCircle } from 'lucide-react';
+import { Sun, Moon, Home, Users, Mail, DollarSign, Briefcase, Clock, MessagesSquare, FileText, MessageCircle } from 'lucide-react';
 import './WeddingPlannerApp.css';
 import { FaFolderOpen } from 'react-icons/fa'; // Keep existing icons
 
@@ -26,7 +26,7 @@ function NavigationBar({ isDarkMode, setIsDarkMode }) {
              <Home size={18} /> Dashboard
            </NavLink>
            <NavLink to="/guest-list" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-             <Users size={18} /> Guest
+             <Users size={18} /> Guests
            </NavLink>
            <NavLink to="/reminders" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
              <Mail size={18} /> RSVP Reminders

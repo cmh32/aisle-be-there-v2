@@ -2,6 +2,8 @@
 // Connects to your backend API endpoint (/api/chat) instead of OpenAI directly.
 
 import React, { useState, useRef, useEffect } from 'react';
+import usePersistentChatState from './hooks/usePersistentChatState'; // Import the custom hook
+import ChatSidebar from './components/ChatSidebar'; // Import the sidebar component
 import './WeddingPlannerApp.css'; // Ensure your CSS paths are correct
 
 const ChatbotPage = ({
@@ -14,9 +16,16 @@ const ChatbotPage = ({
   vendors,
   timelineEvents
 }) => {
-  const [messages, setMessages] = useState([
-    { role: 'assistant', content: 'Hello! I\'m your Virtual Wedding Planner. I can help with wedding planning advice, check your guest status, budget information, and more. How can I assist you today?' }
-  ]);
+  // Use the updated hook which now returns more items
+  const [
+    messages, 
+    setMessages, 
+    chatList, 
+    activeChatId, 
+    startNewChat, 
+    switchToChat
+  ] = usePersistentChatState();
+  
   const [inputValue, setInputValue] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const messagesEndRef = useRef(null);
@@ -199,70 +208,82 @@ const ChatbotPage = ({
   };
 
   return (
-    <div className="page-container chatbot-page-container">
-      <div className="chatbot-container">
-        <header className="chatbot-header">
-          <h1 className="chatbot-title">Wedding Planning Assistant</h1>
-          <p className="chatbot-subtitle">Ask me anything about your wedding plan or general advice!</p>
-        </header>
+    // Update main container to use flex display for sidebar layout
+    <div className="page-container chatbot-page-container with-sidebar">
+      {/* Sidebar Component */}
+      <ChatSidebar 
+        chatList={chatList}
+        activeChatId={activeChatId}
+        startNewChat={startNewChat}
+        switchToChat={switchToChat}
+      />
+      
+      {/* Main Chat Area Container */}
+      <div className="chatbot-main-area">
+        <div className="chatbot-container">
+          <header className="chatbot-header">
+            <h1 className="chatbot-title">Wedding Planning Assistant</h1>
+            <p className="chatbot-subtitle">Ask me anything about your wedding plan or general advice!</p>
+          </header>
 
-        {/* Chat Messages */}
-        <div className="chatbot-messages">
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`message ${message.role === 'user' ? 'user-message' : 'assistant-message'}`}
+          {/* Chat Messages */}
+          <div className="chatbot-messages">
+            {messages.map((message, index) => (
+              <div
+                key={index}
+                className={`message ${message.role === 'user' ? 'user-message' : 'assistant-message'}`}
+              >
+                <div className="message-bubble">
+                  {/* Basic link detection (replace with a library for robust detection if needed) */}
+                  {message.content.split(/(\bhttps?:\/\/\S+)/gi).map((part, i) =>
+                    part.match(/^https?:\/\//) ? (
+                      <a key={i} href={part} target="_blank" rel="noopener noreferrer">{part}</a>
+                    ) : (
+                      part
+                    )
+                  )}
+                </div>
+              </div>
+            ))}
+            {/* Typing Indicator */}
+            {isProcessing && (
+              <div className="message assistant-message">
+                <div className="message-bubble typing-indicator">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            )}
+            {/* Empty div to ensure scroll follows messages */}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Input Form */}
+          <form className="chatbot-input-form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              value={inputValue}
+              onChange={handleInputChange}
+              placeholder="Ask about your budget, guests, timeline, or wedding advice..."
+              className="chatbot-input"
+              disabled={isProcessing}
+              aria-label="Chat input"
+            />
+            <button
+              type="submit"
+              className="send-button"
+              disabled={isProcessing || !inputValue.trim()}
+              aria-label="Send message"
             >
-              <div className="message-bubble">
-                {/* Basic link detection (replace with a library for robust detection if needed) */}
-                {message.content.split(/(\bhttps?:\/\/\S+)/gi).map((part, i) =>
-                  part.match(/^https?:\/\//) ? (
-                    <a key={i} href={part} target="_blank" rel="noopener noreferrer">{part}</a>
-                  ) : (
-                    part
-                  )
-                )}
-              </div>
-            </div>
-          ))}
-          {/* Typing Indicator */}
-          {isProcessing && (
-            <div className="message assistant-message">
-              <div className="message-bubble typing-indicator">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-          )}
-          {/* Empty div to ensure scroll follows messages */}
-          <div ref={messagesEndRef} />
+              {/* Send Icon SVG */}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 2L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </form>
         </div>
-
-        {/* Input Form */}
-        <form className="chatbot-input-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            placeholder="Ask about your budget, guests, timeline, or wedding advice..."
-            className="chatbot-input"
-            disabled={isProcessing}
-            aria-label="Chat input"
-          />
-          <button
-            type="submit"
-            className="send-button"
-            disabled={isProcessing || !inputValue.trim()}
-            aria-label="Send message"
-          >
-            {/* Send Icon SVG */}
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M22 2L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        </form>
       </div>
     </div>
   );

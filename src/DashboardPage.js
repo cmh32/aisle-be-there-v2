@@ -2,12 +2,9 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom'; // Ensure Link is imported
 import {
-    LayoutDashboard, // For potential future use maybe? Keep for now.
     DollarSign,     // Budget
     Users,          // Guest List
-    ClipboardList,  // Vendor Hub (like a checklist)
     CalendarClock,  // Timeline Builder
-    Palette,        // Design & Inspiration
     BookOpen,       // Notes/Documents
     Camera,         // Photo Placeholder Icon
     Edit3,          // Edit Date Icon
@@ -37,9 +34,9 @@ function DashboardPage({
     allottedBudget,
     totalSpentOrCommitted,
     formatCurrency, // Receive helper function
-    // New props for Timeline Builder
-    timelineEvents,
-    setTimelineEvents
+    // New props for Timeline Builder - REMOVED as not used here
+    // timelineEvents,
+    // setTimelineEvents
 }) {
     // State for photo URL
     const [photoUrl, setPhotoUrl] = useState(null);
