@@ -3817,3 +3817,185 @@ html[data-theme='dark'] .svg-invitation-preview {
   }
 
 }
+
+/* Add these styles to your existing src/WeddingPlannerApp.css */
+
+/* Guest List Page - Widen Table for New Columns */
+.extra-wide-table {
+  min-width: 1600px; /* Adjust as needed based on content */
+}
+.extra-wide-table th,
+.extra-wide-table td {
+  font-size: 0.8rem; /* Make font slightly smaller */
+  padding: 6px 4px; /* Adjust padding */
+  white-space: nowrap; /* Prevent wrapping by default */
+}
+/* Allow specific columns to wrap */
+.extra-wide-table th:nth-child(1), .extra-wide-table td:nth-child(1), /* Name */
+.extra-wide-table th:nth-child(2), .extra-wide-table td:nth-child(2), /* Email */
+.extra-wide-table th:nth-child(4), .extra-wide-table td:nth-child(4) { /* Address */
+  white-space: normal;
+  min-width: 120px; /* Give name/email/address some min width */
+}
+/* Style new input types */
+.extra-wide-table input[type="checkbox"] {
+  vertical-align: middle;
+}
+.extra-wide-table select {
+   max-width: 110px; /* Limit width of dropdowns */
+   padding: 4px 2px;
+   font-size: 0.8rem;
+}
+
+/* Guest List Header - Multi Row Actions */
+.guest-list-actions-multi-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+.guest-list-title-row {
+  width: 100%;
+}
+
+.guest-list-action-row {
+  display: flex;
+  justify-content: space-between; /* Pushes items apart */
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  flex-wrap: wrap; /* Allow wrapping */
+}
+.plus-one-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-grow: 1; /* Allow it to take space */
+}
+.plus-one-controls label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.plus-one-limit-input {
+  width: 60px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid var(--input-border);
+}
+.recommend-button {
+  background-color: var(--success-color);
+}
+.recommend-button:hover {
+  opacity: 0.9;
+}
+.recommend-button:disabled {
+   background-color: #cccccc;
+   cursor: not-allowed;
+}
+
+
+/* Recommendation Results Section */
+.recommendation-results-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  animation: fadeIn 0.5s ease-out; /* Add fade-in */
+}
+
+.recommendation-title {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.recommendation-error-banner {
+  background-color: #fff0f0;
+  color: var(--error-color);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  border: 1px solid var(--error-color);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recommendation-split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 1.5rem;
+}
+@media (max-width: 900px) {
+  .recommendation-split-layout {
+      grid-template-columns: 1fr; /* Stack columns */
+  }
+}
+
+.recommendation-list {
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  background-color: var(--background-color); /* Slightly different bg */
+}
+
+.recommendation-list h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.recommended-list h4 { color: var(--success-color); }
+.not-recommended-list h4 { color: var(--warning-color); } /* Use warning for 'not recommended' */
+
+.recommendation-list table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.recommendation-list th,
+.recommendation-list td {
+  padding: 0.6rem 0.4rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: top;
+}
+.recommendation-list th {
+  font-weight: 600;
+  background-color: rgba(0,0,0,0.02); /* Subtle header bg */
+}
+html[data-theme='dark'] .recommendation-list th {
+  background-color: rgba(255,255,255,0.04);
+}
+
+.recommendation-list tbody tr:last-child td {
+  border-bottom: none;
+}
+.recommendation-list td:nth-child(2) { /* Reason column */
+  font-size: 0.85rem;
+  color: var(--light-text);
+}
+
+.recommendation-list p { /* Empty state */
+  text-align: center;
+  color: var(--light-text);
+  padding: 1rem;
+  font-style: italic;
+}
+
+/* Add keyframes if not already present */
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
